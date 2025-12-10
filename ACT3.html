@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hawaiian Pizza Delivery Order Menu</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+            color: #333;
+            transition: font-family 0.3s; /* For font style change */
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #ff4500; /* Orange-red for pizza theme */
+            background-color: #fffacd; /* Light yellow accent */
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .menu-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+        .menu-item img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 5px;
+            margin-right: 20px;
+        }
+        .item-details {
+            flex-grow: 1;
+        }
+        .item-details h3 {
+            margin: 0;
+            color: #333;
+        }
+        .price {
+            font-weight: bold;
+            color: #ff4500;
+        }
+        .add-btn {
+            background-color: #ff4500;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .add-btn:hover {
+            background-color: #e63900;
+        }
+        .cart {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+        }
+        .cart h2 {
+            color: #ff4500;
+        }
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        .total {
+            font-weight: bold;
+            text-align: right;
+            margin-top: 10px;
+        }
+        .order-form {
+            margin-top: 20px;
+        }
+        .order-form label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .order-form input, .order-form select, .order-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        .order-btn {
+            background-color: #ff4500;
+            color: white;
+            border: none;
+            padding: 15px;
+            width: 100%;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .order-btn:hover {
+            background-color: #e63900;
+        }
+        .auto-deposit {
+            font-size: 12px;
+            color: #666;
+        }
+        .font-selector {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .goodday-info {
+            text-align: center;
+            margin-bottom: 20px;
+            font-weight: bold;
+            color: #ff4500;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Font Style Selector -->
+        <div class="font-selector">
+            <label for="font-select">Choose Font Style:</label>
+            <select id="font-select">
+                <option value="Arial">Arial</option>
+                <option value="Times New Roman">Times New Roman</option>
+                <option value="Courier New">Courier New</option>
+                <option value="Georgia">Georgia</option>
+                <option value="Verdana">Verdana</option>
+            </select>
+        </div>
+
+        <!-- Goodday Info -->
+        <div class="goodday-info" id="goodday-info">
+            Loading greeting...
+        </div>
+
+        <h1>Hawaiian Pizza Delivery Order Menu</h1>
+        
+        <!-- Menu Items -->
+        <div class="menu-item">
+            <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Classic Hawaiian Pizza">
+            <div class="item-details">
+                <h3>Classic Hawaiian Pizza</h3>
+                <p>Tomato sauce, mozzarella cheese, ham, and pineapple chunks. 12-inch.</p>
+                <div class="price">$15.99</div>
+            </div>
+            <button class="add-btn" onclick="addToCart('Classic Hawaiian Pizza', 15.99)">Add to Cart</button>
+        </div>
+        
+        <div class="menu-item">
+            <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Hawaiian Pizza with Extra Cheese">
+            <div class="item-details">
+                <h3>Hawaiian Pizza with Extra Cheese</h3>
+                <p>Loaded with extra mozzarella, ham, and pineapple for a cheesy delight.</p>
+                <div class="price">$18.99</div>
+            </div>
+            <button class="add-btn" onclick="addToCart('Hawaiian Pizza with Extra Cheese', 18.99)">Add to Cart</button>
+        </div>
+        
+        <div class="menu-item">
+            <img src="https://images.unsplash.com/photo-1598103442097-8b74394b95c6?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Large Hawaiian Pizza Tray">
+            <div class="item-details">
+                <h3>Large Hawaiian Pizza Tray</h3>
+                <p>18-inch tray perfect for parties, with ham and pineapple toppings.</p>
+                <div class="price">$25.99</div>
+            </div>
+            <button class="add-btn" onclick="addToCart('Large Hawaiian Pizza Tray', 25.99)">Add to Cart</button>
+        </div>
+        
+        <div class="menu-item">
+            <img src="https://images.unsplash.com/photo-1551782450-17144efb5723?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Garlic Bread Add-on">
+            <div class="item-details">
+                <h3>Garlic Bread Add-on</h3>
+                <p>Buttery garlic breadsticks to complement your pizza.</p>
+                <div class="price">$5.99</div>
+            </div>
+            <button class="add-btn" onclick="addToCart('Garlic Bread Add-on', 5.99)">Add to Cart</button>
+        </div>
+        
+        <!-- Cart Section -->
+        <div class="cart">
+            <h2>Your Cart</h2>
+            <div id="cart-items"></div>
+            <div class="total" id="cart-total">Total: $0.00</div>
+        </div>
+        
+        <!-- Order Form -->
+        <div class="order-form">
+            <h2>Delivery Details</h2>
+            <label for="name">Full Name:</label>
+            <input type="text" id="name" name="name" required>
+            
+            <label for="phone">Phone Number:</label>
+            <input type="tel" id="phone" name="phone" required>
+            
+            <label for="address">Delivery Address:</label>
+            <textarea id="address" name="address" rows="3" placeholder="Street, City, State, ZIP" required></textarea>
+            
+            <label for="deposit">Deposit Amount (USD, required upfront):</label>
+            <input type="number" id="deposit" name="deposit" min="0" step="0.01" placeholder="e.g., 5.00" required>
+            <div class="auto-deposit" id="auto-deposit-suggestion">Suggested deposit: $0.00 (10% of total)</div>
+            <small>Note: This deposit is non-refundable and covers order processing. Full payment will be collected on delivery.</small>
+            
+            <label for="conversation-plan">Conversation Plan (Notes for Delivery/Interaction):</label>
+            <textarea id="conversation-plan" name="conversation-plan" rows="3" placeholder="e.g., Call upon arrival, special handling"></textarea>
+            
+            <button class="order-btn" onclick="placeOrder()">Place Delivery Order</button>
+        </div>
+    </div>
+
+    <script>
+        // Hello World (console log on load)
+        console.log("Hello World!");
+
+        // Cart array to hold items
+        let cart = [];
+        let total = 0;
+
+        // Boolean variables for validation
+        let isFormValid = false;
+        let isDepositValid = false;
+        let isCartNotEmpty = false;
+        let isDepositSufficient = false; // Additional boolean for deposit check
+
+        // Conversation plan: Array of predefined messages
+        const conversationPlan = [
+            "Welcome to Hawaiian Pizza Delivery! Ready to order?",
+            "Please confirm your delivery details and deposit.",
+            "Order confirmed! We'll follow your conversation plan notes.",
+            "If issues arise, contact support@hawaiianpizza.com."
+        ];
+
+        // Font Style Change
+        document.getElementById('font-select').addEventListener('change', function() {
+            document.body.style.fontFamily = this.value;
+        });
+
+        // Goodday Info (Day and Greeting)
+        const now = new Date();
+        const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+        const hour = now.getHours();
+        const greeting = hour < 12 ? 'Good morning!' : hour < 18 ? 'Good afternoon!' : 'Good evening!';
+        document.getElementById('goodday-info').textContent = Day: ${days[now.getDay()]} | ${greeting};
+
+        // Function to add item to cart
+        function addToCart(itemName, price) {
+            cart.push({ name: itemName, price: price });
+            total += price;
+            updateCart();
+            updateDepositSuggestion(); // Update suggested deposit on cart change
+            alert(Added ${itemName} to cart!); // Alert notification for adding item
+        }
+
+        // Function to update cart display
+        function updateCart() {
+            const cartItemsDiv = document.getElementById('cart-items');
+            cartItemsDiv.innerHTML = '';
+            cart.forEach((item, index) => {
+                const itemDiv = document.createElement('div');
+                itemDiv.className = 'cart-item';
+                itemDiv.innerHTML = <span>${item.name}</span><span>$${item.price.toFixed(2)}</span><button onclick="removeFromCart(${index})">Remove</button>;
+                cartItemsDiv.appendChild(itemDiv);
+            });
+            document.getElementById('cart-total').textContent = Total: $${total.toFixed(2)};
+            isCartNotEmpty = cart.length > 0; // Boolean check
+        }
+
+        // Function to remove item from cart
+        function removeFromCart(index) {
+            total -= cart[index].price;
+            cart.splice(index, 1);
+            updateCart();
+            updateDepositSuggestion();
+            alert('Item removed from cart!'); // Alert notification for removing item
+        }
+
+        // Function to update deposit suggestion (10% of total)
+        function updateDepositSuggestion() {
+            const suggestedDeposit = (total * 0.1).toFixed(2);
+            document.getElementById('auto-deposit-suggestion').textContent = Suggested deposit: $${suggestedDeposit} (10% of total);
+        }
+
+        // Function to place order with validations and alerts
+        function placeOrder() {
+            const name = document.getElementById('name').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+            const address = document.getElementById('address').value.trim();
+            const deposit = parseFloat(document.getElementById('deposit').value);
+            const notes = document.getElementById('conversation-plan').value.trim();
+
+            // Boolean validations
+            isFormValid = name.length > 0 && phone.length > 0 && address.length > 0;
+            isDepositValid = deposit > 0 && deposit <= total; // Deposit must be positive and not exceed total
+            isDepositSufficient = deposit >= (total * 0.1); // Additional check: at least 10% of total
+            isCartNotEmpty = cart.length > 0;
+
+            if (!isCartNotEmpty) {
+                alert("Your cart is empty. Please add items to your order.");
+                return;
+            }
+
+            if (!isFormValid) {
+                alert("Please fill in all required fields (Name, Phone, Address).");
+                return;
+            }
+
+            if (!isDepositValid) {
+                alert(Deposit must be a positive amount and not exceed the total ($${total.toFixed(2)}).);
+                return;
+            }
+
+            if (!isDepositSufficient) {
+                alert(Deposit should be at least 10% of the total ($${ (total * 0.1).toFixed(2) }). Please increase your deposit.);
+                return;
+            }
+
+            // Alert with conversation plan message
+            let alertMessage = conversationPlan[2] + "\n\nOrder Summary:\n";
+            cart.forEach(item => {
+                alertMessage += ${item.name}: $${item.price.toFixed(2)}\n;
+            });
+            alertMessage += Total: $${total.toFixed(2)}\n;
+            alertMessage += Deposit: $${deposit.toFixed(2)}\n;
+            alertMessage += Name: ${name}\nPhone: ${phone}\nAddress: ${address}\nNotes: ${notes || 'None'}\n;
+            alertMessage += Confirmation #: ${Math.floor(Math.random() * 1000000)}\n(This is a demo; no real submission.);
+
+            alert(alertMessage);
+
+            // Reset cart and form (simulate order placement)
+            cart = [];
+            total = 0;
+            updateCart();
+            updateDepositSuggestion();
+            document.getElementById('name').value = '';
+            document.getElementById('phone').value = '';
+            document.getElementById('address').value = '';
+            document.getElementById('deposit').value = '';
+            document.getElementById('conversation-plan').value = '';
+        }
+    </script>
+</body>
+</html>
+
